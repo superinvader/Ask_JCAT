@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+  <HEAD>
+      <TITLE>Add JCAT Crash Record</TITLE>
+      <STYLE TYPE="text/css">
+          div#top {height:80px;}
+          div#addrecord {height:100px;text-align:center;font-size:200%;vertical-align:middle}
+          div#content {height:50px;width:100%;vertical-align:middle}
+		  div#tail {height:100px;clear:both;text-align:center;color:#C0C0C0;padding-top: 200px}
+      </STYLE>
+  </HEAD>
+  <BODY>
+    <DIV ID="top"></DIV>
+    <DIV ID="addrecord">
+        <H1>Add JCAT Crash Record</H1>
+    </DIV>
+    <DIV ID="content">
+		<FORM ACTION=AddJCATRecordServlet>
+		  <CENTER>
+		    <label style="position:absolute;left:30%">keywords : </label>
+		    <INPUT ID="keywords" STYLE="width:474px;position:absolute;left:37%" TYPE="TEXT" NAME="keywords"><BR>
+		    <label style="position:absolute;left:30%">description : </label>
+		    <INPUT ID="description" STYLE="width:474px;position:absolute;left:37%" TYPE="text" NAME="description" ><BR> 
+		    <label style="position:absolute;left:30%">solution : </label>
+		    <INPUT ID="solution" STYLE="width:474px;position:absolute;left:37%" TYPE="TEXT" NAME="solution"><BR>
+		    <label style="position:absolute;left:30%">author : </label>
+		    <INPUT ID="author" STYLE="width:474px;position:absolute;left:37%" TYPE="TEXT" NAME="author"><P>
+		    <INPUT STYLE="width:50px;position:relative;top:10px" TYPE="SUBMIT" VALUE="ADD">
+		  </CENTER>
+		</FORM>
+	</DIV>
+	<DIV ID="tail">
+	  <label id="copyrights">@2013 Ericsson ENC/RD/LV</label>
+	</DIV>
+  </BODY>
+</HTML>
