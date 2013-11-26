@@ -1,0 +1,18 @@
+table{
+        width:80%;
+        border: 1px solid #6699CC;
+		border-collapse:collapse;
+		background-color:#FFFFFF;
+		}
+  th{
+    background-color:#6699CC;
+	border: 1px solid #6699CC;
+    color:White ;
+  }
+  td{
+     border: 1px solid #6699CC;
+  }
+  h1{
+     color:#6699CC;
+  }
+  
