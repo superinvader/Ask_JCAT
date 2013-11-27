@@ -1,0 +1,431 @@
+<!DOCTYPE html ask_jcat_record_manage>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="file:///C:/Users/eadeehi/Desktop/ask_jcat_record_manage/ask_jcat_record_manage.css" />
+
+<title>Ask JCAT Record Manage</title>
+    <script language=javascript src="file:///C:/Users/eadeehi/Desktop/ask_jcat_record_manage/ask_jcat_record_manage.js"></script>  
+    <SCRIPT LANGUAGE="JavaScript">  
+    <!--  
+        /*   
+        jQuery实现点击复选框即高亮显示选中行 全选、反选
+        */  
+        (function ($) {  
+            $.fn.extend({  
+                "alterBgColor": function (options) {  
+                    var prevselitem = null;  
+                    //设置默认值  
+                    options = $.extend({  
+                        style: "4",  
+                        odd: "odd", /* 偶数行样式*/  
+                        even: "even", /* 奇数行样式*/  
+                        over: "over", /* 鼠标掠过*/  
+                        selected: "selected" /* 选中行样式*/  
+                    }, options);  
+                    //交替背景  
+                    $("tbody>tr:odd", this).addClass(options.odd);  
+                    $("tbody>tr:even", this).addClass(options.even);  
+                    //鼠标移动背景  
+                    $("tbody>tr", this).hover(function () { $(this).addClass(options.over); }, function () { $(this).removeClass(options.over); });  
+                    //初始背景 (判断第一列中有被选中的话就高亮)  
+                    $("tbody>tr td:first-child:has(:checked)", this).parents('tr').addClass(options.selected);  
+      
+                    //样式1  
+                    if (options.style == "1") {  
+                        $("tbody>tr", this).click(function () { $(this).toggleClass(options.selected); });  
+                    }  
+      
+                    //样式2  
+                    if (options.style == "2") {  
+                        $('tbody>tr', this).click(function () {  
+                            //判断当前是否选中  
+                            var hasSelected = $(this).hasClass(options.selected);  
+                            //如果选中，则移出selected类，否则就加上selected类  
+                            $(this)[hasSelected ? "removeClass" : "addClass"](options.selected)  
+                            //查找内部的checkbox,设置对应的属性。  
+                        .find(':checkbox:first').attr('checked', !hasSelected);  
+                        });  
+                    }  
+      
+                    //样式3  
+                    if (options.style == "3") {  
+                        // 如果单选框默认情况下是选择的，则高色.  
+                        $('tbody>tr', this).click(function () {  
+                            $(this).siblings().removeClass(options.selected); //除掉同胞的样式。  
+                            $(this).addClass(options.selected).find(':radio:first').attr('checked', true);  
+                        });  
+                    }  
+      
+                    //样式4  
+                    if (options.style == "4") {  
+                        //第一列 为多选  
+                        $('tbody>tr td:first-child', this).click(function () {  
+                            var p = $(this).parents("tr");  
+                            var hasSelected = p.hasClass(options.selected);  
+                            p[hasSelected ? "removeClass" : "addClass"](options.selected).find(':checkbox:first').attr('checked', !hasSelected);  
+                        });  
+                        //其他列 为单选  
+                        $('tbody>tr td:not(:first-child)', this).click(function () {  
+                            var p = $(this).parents("tr");  
+                            p.addClass(options.selected).siblings().removeClass(options.selected).find(':checkbox:first').attr('checked', false);  
+                            p.find(':checkbox:first').attr('checked', true);  
+                        });  
+                    }  
+      
+      
+                    //表头中的checkbox （全选 反选）  
+                    $("thead>tr th:first-child :checkbox:first", this).click(function () {  
+                        //判断当前是否选中  
+                        var hasSelected = $(this).attr("checked");  
+                        //如果选中，则移出selected类，否则就加上selected类  
+                        var tab = $(this).parents("table");  
+                        tab.find("tbody>tr")[!hasSelected ? "removeClass" : "addClass"](options.selected);  
+                        tab.find('tbody>tr td:first-child :checkbox').attr("checked", hasSelected ? true : false);  
+      
+                    });  
+                    return this;  //返回this，使方法可链。  
+                }  
+            });  
+        })(jQuery);  
+      
+      
+        $(document).ready(function () {  
+            $(".tablesorter").alterBgColor({ style: "2" }).find("th").css("color", "red"); //可以链式操作  
+        });  
+     //-->  
+    </SCRIPT>  
+</head>
+
+<body>
+
+<div align="center">
+<h1>Ask JCAT Record Manage</h1>
+<br\>
+<br\>
+<table class="tablesorter" id="my_table_1" cellspacing="1" width="100%">
+<thead>
+<tr>
+<th>Keywords</th>
+<th>Description</th>
+<th>Solution</th>
+<th>Author</th>
+<th>Choose to delete</th>
+</tr>
+</thead>
+
+<tbody align="center">
+
+<tr>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>input</td>
+<td>定义输入域</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>textarea</td>
+<td>定义文本域 (一个多行的输入控件)</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>label</td>
+<td>定义一个控制的标签</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>fieldset</td>
+<td>定义域</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>legend</td>
+<td>定义域的标题</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>select</td>
+<td>定义一个选择列表</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>optgroup</td>
+<td>定义选项组</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>option</td>
+<td>定义下拉列表中的选项</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>定义一个按钮</td>
+<td>form</td>
+<td>定义供用户输入的表单</td>
+<td>
+<input type="checkbox" name="vehicle" value="Car" />
+</td>
+</tr>
+
+</tbody>
+
+</table>
+<br>
+</div>
+
+<tr>
+<td colspan="2">
+<div style="width:40%;margin:auto;">
+<input type="submit" name="delete_button" value="删除" onclick="deleteItems()"/>
+<input style="float:right" type="submit" name="return_button" value="返回" onclick="return()"/>
+<script>
+function deleteItems(){
+    confirm("确定删除你选择的内容？","",function(){ alert("确定");},function(){ alert("取消");});
+}
+</script>
+</div>
+</td>
+</tr>
+
+</body>
+</html>

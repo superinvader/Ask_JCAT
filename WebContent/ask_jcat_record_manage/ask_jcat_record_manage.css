@@ -1,0 +1,21 @@
+table{
+        width:80%;
+        border: 1px solid #6699CC;
+		border-collapse:collapse;
+		background-color:#FFFFFF;
+		}
+  th{
+    background-color:#6699CC;
+	border: 1px solid #6699CC;
+    color:White ;
+  }
+  td{
+     border: 1px solid #6699CC;
+  }
+  h1{
+     color:#6699CC;
+  }
+.tablesorter .even{ background:#E1F4EE;}     /* 偶数行样式 E1F4EE*/  
+.tablesorter .odd{ background:#E1F4EE;}      /* 奇数行样式 E1F4EE*/  
+.tablesorter .over{background:#CCCC99;}      /* 鼠标掠过行样式 CCCC99*/  
+.tablesorter .selected{ background:#6F4DFF;color:#ffffff;} /* 选中行样式 BFDFFF*/ 
